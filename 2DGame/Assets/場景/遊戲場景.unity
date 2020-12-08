@@ -1367,7 +1367,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -336, y: -0}
+  m_AnchoredPosition: {x: -336, y: 0}
   m_SizeDelta: {x: 25, y: 720}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1460871472
@@ -1606,6 +1606,89 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1529788098}
   m_CullTransparentMesh: 0
+--- !u!1 &1802572868
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1802572870}
+  - component: {fileID: 1802572869}
+  - component: {fileID: 1802572871}
+  m_Layer: 0
+  m_Name: "\u4FC4\u7F85\u65AF\u65B9\u584A\u63A7\u5236\u5668"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1802572869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1802572868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c1dc520b42c0544c8aaf0642d400528, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  downtime: 2.3
+  score: 0
+  Hscore: 0
+  level: 1
+  endimage: {fileID: 0}
+  down: {fileID: 0}
+  move: {fileID: 0}
+  clear: {fileID: 0}
+  end: {fileID: 0}
+--- !u!4 &1802572870
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1802572868}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1802572871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1802572868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a629aab32dcf74f4db5843a7163d143a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 100
+  weight: 1.5
+  brand: BMW
+  hasWindow: 1
+  colorA: {r: 1, g: 0, b: 0, a: 1}
+  colorb: {r: 0.6, g: 0, b: 0.8, a: 1}
+  colorc: {r: 0, g: 1, b: 0, a: 0.6}
+  v2A: {x: 0, y: 0}
+  v2B: {x: 1, y: 1}
+  v2C: {x: 1.5, y: 6}
+  V3A: {x: 1, y: 6, z: 1.5}
+  V4A: {x: 1, y: 6, z: 1.5, w: 8}
+  soundexplosion: {fileID: 0}
+  spriteA: {fileID: 0}
+  goa: {fileID: 0}
+  gob: {fileID: 0}
+  tra: {fileID: 0}
+  cam: {fileID: 0}
 --- !u!1 &1904352466
 GameObject:
   m_ObjectHideFlags: 0
