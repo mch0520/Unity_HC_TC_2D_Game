@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Car : MonoBehaviour
 {
+    #region 汽車的欄位
     //欄位的屬性
     //標題 Header   字串
     //提示 Tooltip  字串
@@ -42,12 +43,70 @@ public class Car : MonoBehaviour
     //元件:面板上的粗體字
     public Transform tra;
     public Camera cam;
+    #endregion
 
+    #region 事件
     private void Start()
     {
         print("哈囉，沃德");
+        //取得欄位
         print(size);
         print(brand);
+        //設定欄位
+        weight = 1.3f;
+        hasWindow = false;
+
+
+        //呼叫自訂方法
+        //呼叫自訂方法:呼叫自訂方法名稱();
+        methoadA();
+        methoadB();
+
+        //區域變數
+        //變數 區域變數名稱 指定 值;
+        //僅限此區域使用(大括號)
+        int intA = methoadB();
+        print("傳回整數"+intA);
+
+        float pi = PI();
+        print(pi);
+
+        Vector3 v345 = V345();
+        print(v345);
 
     }
+    #endregion
+
+    #region 方法
+    //欄位語法:
+    //修飾詞 類型 欄位名稱 指定 值;
+
+    //方法語法
+    //修飾詞 傳回類型 方法名稱 () {}
+    //無傳回類型 void - 沒有傳回類型
+    //自訂方法
+    //*必須被呼叫才會被執行
+
+    private void methoadA()
+    {
+        print("嗨~,我是方法A");
+    }
+
+    //如果不適無傳回,必須須是用關鍵字 return
+    //而且必須在 return 後加上傳回類型
+    private void methoadB()
+    {
+        return 123;
+    }
+
+    private float PI()
+    {
+        return 3.14f;
+    }
+    private Vector3 V345()
+    {
+        return new Vector3(3,4,5);
+    }
+
+    #endregion
 }
