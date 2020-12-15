@@ -60,12 +60,12 @@ public class Car : MonoBehaviour
         //呼叫自訂方法
         //呼叫自訂方法:呼叫自訂方法名稱();
         methoadA();
-        methoadB();
+        MethoadB();
 
         //區域變數
         //變數 區域變數名稱 指定 值;
         //僅限此區域使用(大括號)
-        int intA = methoadB();
+        int intA = MethoadB();
         print("傳回整數"+intA);
 
         float pi = PI();
@@ -94,9 +94,9 @@ public class Car : MonoBehaviour
 
     //如果不適無傳回,必須須是用關鍵字 return
     //而且必須在 return 後加上傳回類型
-    private void methoadB()
+    private int MethoadB()
     {
-        return 123;
+        return 3;
     }
 
     private float PI()
