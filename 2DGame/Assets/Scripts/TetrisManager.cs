@@ -68,24 +68,51 @@ public class TetrisManager : MonoBehaviour
                 timer = 0;
                 currentTetris.anchoredPosition -= new Vector2(0, 50);
             }
+
+
+            #region 控制俄羅斯方塊移動、旋轉、加速掉落
+
             //KeyCode 列舉(下拉式選單)
             //或者        ||
-            //按下D 或 右方向 往右50
+            //按下D 或 右方向鍵 往右50
+            //如果x 座標小於280才能往右移動
+          //  if (currentTetris.anchoredPosition.x<)
+          // {
+
+          //  }
             if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
             {
                 currentTetris.anchoredPosition += new Vector2(50, 0);
             }
-            //按下A 或 左方向 往左50
+
+
+            //按下A 或 左方向鍵 往左50
             if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 currentTetris.anchoredPosition -= new Vector2(50, 0);
             }
-            //按下 W或下方向 逆時針旋轉90度
+            //按下 W或下方向鍵 逆時針旋轉90度
             if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
             {
                 //屬性面板上的 Rotation 必須用eulerAngles 控制
                 currentTetris.eulerAngles += new Vector3(0, 0, 90);
             }
+            //按住S或下方向鍵 加快掉落速度
+            if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+            {
+                timeFall = 0.2f;
+            }
+            //否則恢復速度
+            else
+            {
+                timeFall = 1.5f;
+            }
+            #endregion
+
+           // if (currentTetris.anchoredPosition.y ==-340)
+           // {
+           //     StartGame();
+           // }
 
         }
 
@@ -104,7 +131,7 @@ public class TetrisManager : MonoBehaviour
     /// 2.上一次俄羅斯方塊要隱藏
     /// 3.隨機取得下一個
     /// </summary>
-    public void StarGame()
+    public void StartGame()
     {
         //保存上一次的方塊
         GameObject tetris = nextGoArea.GetChild(nextIndex).gameObject;
@@ -132,7 +159,7 @@ public class TetrisManager : MonoBehaviour
 
     }
 
-    public int ScoreA()
+    public int ScoreADD()
     {
         return score;
     }

@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 4}
-  m_MinSize: {x: 950, y: 300}
+  m_MinSize: {x: 950, y: 544}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -73,7 +73,7 @@ MonoBehaviour:
   m_MinSize: {x: 202, y: 444}
   m_MaxSize: {x: 4002, y: 8044}
   vertical: 1
-  controlID: 54
+  controlID: 38
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -142,10 +142,10 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 957
-  m_MinSize: {x: 711, y: 472}
-  m_MaxSize: {x: 18006, y: 14022}
+  m_MinSize: {x: 713, y: 494}
+  m_MaxSize: {x: 18008, y: 14044}
   vertical: 0
-  controlID: 92
+  controlID: 32
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -214,10 +214,10 @@ MonoBehaviour:
     y: 0
     width: 372
     height: 957
-  m_MinSize: {x: 234, y: 472}
-  m_MaxSize: {x: 10004, y: 14022}
+  m_MinSize: {x: 234, y: 494}
+  m_MaxSize: {x: 10004, y: 14044}
   vertical: 1
-  controlID: 93
+  controlID: 81
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -400,20 +400,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - "Assets/\u5834\u666F"
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Scripts
+  - "Assets/\u5834\u666F"
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\USER\Desktop\Unity_HC_TC_2D_Game\2DGame
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 602e0000
-    m_LastClickedID: 11872
-    m_ExpandedIDs: 00000000f02d000000ca9a3b
+    m_SelectedIDs: 9a2d0000
+    m_LastClickedID: 11674
+    m_ExpandedIDs: 00000000542d000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -441,7 +441,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000f02d0000
+    m_ExpandedIDs: 00000000542d0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -472,15 +472,15 @@ MonoBehaviour:
     m_ExpandedInstanceIDs: c6230000142f0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: "\u4E00\u578B"
-      m_OriginalName: "\u4E00\u578B"
+      m_Name: TetrisManager
+      m_OriginalName: TetrisManager
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 12040
+      m_UserData: 9684
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
       m_OriginalEventType: 0
@@ -614,9 +614,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 1.479574, y: 0.40561014, z: -2.1787796}
+    m_Target: {x: 7.503578, y: 2.779103, z: 90}
     speed: 2
-    m_Value: {x: 1.479574, y: 0.40561014, z: -2.1787796}
+    m_Value: {x: 7.503578, y: 2.779103, z: 90}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -649,9 +649,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 11.087978
+    m_Target: 2.9182076
     speed: 2
-    m_Value: 11.087978
+    m_Value: 2.9182096
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -706,9 +706,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: d4250000
-      m_LastClickedID: 0
-      m_ExpandedIDs: 54d5ffffbaffffff384300005243000068430000
+      m_SelectedIDs: 22f5ffff
+      m_LastClickedID: -2782
+      m_ExpandedIDs: 00f6ffff72fbffff2c3200007e320000e035000010360000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
