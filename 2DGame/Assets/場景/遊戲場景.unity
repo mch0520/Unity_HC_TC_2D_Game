@@ -2504,7 +2504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c1dc520b42c0544c8aaf0642d400528, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  downtime: 2.3
+  timeFall: 1.5
   score: 0
   Hscore: 0
   level: 1
@@ -2516,6 +2516,8 @@ MonoBehaviour:
   nextGoArea: {fileID: 1045518422}
   nextIndex: 0
   traCanvas: {fileID: 775975415}
+  currentTetris: {fileID: 0}
+  timer: 0
 --- !u!4 &1802572870
 Transform:
   m_ObjectHideFlags: 0
