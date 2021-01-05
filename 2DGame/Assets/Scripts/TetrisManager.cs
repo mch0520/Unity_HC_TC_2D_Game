@@ -21,8 +21,10 @@ public class TetrisManager : MonoBehaviour
     public AudioClip move;
     public AudioClip clear;
     public AudioClip end;
-    [Header("下一個方塊")]
+    [Header("下一個俄羅斯方塊區域")]
     public Transform nextGoArea;
+    [Header("生成俄羅斯方塊的父物件")]
+    public Transform traTetrisParer;
 
     /// <summary>
     /// 下一個方塊的編號
@@ -63,6 +65,7 @@ public class TetrisManager : MonoBehaviour
     private void Update()
     {
         ControlTetis();
+        FastDowm();
     }
 
     /// <summary>
@@ -79,6 +82,7 @@ public class TetrisManager : MonoBehaviour
                 timer = 0;
                 currentTetris.anchoredPosition -= new Vector2(0, 34);
             }
+
 
 
             #region 控制俄羅斯方塊移動、旋轉、加速掉落
@@ -115,25 +119,46 @@ public class TetrisManager : MonoBehaviour
                 //屬性面板上的 Rotation 必須用eulerAngles 控制
                 currentTetris.eulerAngles += new Vector3(0, 0, 90);
             }
-            //按住S或下方向鍵 加快掉落速度
-            if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+
+            if (!fastDown)              //如果 沒有在快速落下 才 加速
             {
-                timeFall = 0.2f;
+                //按住S或下方向鍵 加快掉落速度
+                if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+                {
+                    timeFall = 0.2f;
+                }
+                //否則恢復速度
+                else
+                {
+                    timeFall = 1.5f;
+                }
             }
-            //否則恢復速度
-            else
-            {
-                timeFall = 1.5f;
-            }
+            
             #endregion
 
-            if (currentTetris.anchoredPosition.y == -340)
+            if (tetris.wallDown || tetris.smallBottom)
             {
-                StartGame();
+                SetGround();                    //設定為地板
+                StartGame();                    //生成下一顆
+                StartCoroutine(ShakeEffect());  //晃動效果
             }
 
         }
 
+    }
+
+    /// <summary>
+    /// 設定掉落後變為方塊
+    /// </summary>
+    private void SetGround()
+    {
+        int count = currentTetris.childCount;                   //取得 目前 方塊 的 子物件總數
+
+        for (int i = 0; i < count; i++)                         //迴圈 執行 子物件數量的次數
+        {
+            currentTetris.GetChild(i).name = "方塊";            //名稱改為方塊
+            currentTetris.GetChild(i).gameObject.layer = 10;     //圖層改為方塊
+        }
     }
 
     private void RandomTetris()
@@ -151,6 +176,9 @@ public class TetrisManager : MonoBehaviour
     /// </summary>
     public void StartGame()
     {
+        fastDown = false;               //碰到地板後，沒有快速落下
+
+        //1.生成俄羅斯方塊要放在正確位置
         //保存上一次的方塊
         GameObject tetris = nextGoArea.GetChild(nextIndex).gameObject;
         //生成物件(生成物件，父物件)
@@ -169,6 +197,49 @@ public class TetrisManager : MonoBehaviour
         currentTetris = current.GetComponent<RectTransform>();
 
     }
+
+    #region 協同程序
+    private IEnumerator ShakeEffect()
+    {
+
+        //取得震動效果物件的 Rect
+        RectTransform rect = traTetrisParent.GetComponent<RectTransform>();
+
+        //晃動 向上 30>0>20>0
+        //等待 0.05
+        float interval = 0.05f;
+
+        rect.anchoredPosition += Vector2.up * 30;
+        yield return new WaitForSeconds(interval);
+        rect.anchoredPosition += Vector2.up * 30;
+        yield return new WaitForSeconds(interval);
+        rect.anchoredPosition += Vector2.up * 30;
+        yield return new WaitForSeconds(interval);
+        rect.anchoredPosition += Vector2.up * 30;
+        yield return new WaitForSeconds(interval);
+    }
+    #endregion
+
+    /// <summary>
+    /// 是否快速落下
+    /// </summary>
+    private bool fastDown;
+
+    /// <summary>
+    /// 快速掉落功能
+    /// </summary>
+    private void FastDowm()
+    {
+        if (currentTetris && !fastDown)                                                            //如果 有 目前方塊 並且 還沒快速落下
+        {
+            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))   //如果 按下 空白鍵
+            {
+                fastDown = true;                                                      //正在快速落下
+                timeFall = 0.018f;                                                    //掉落時間
+                StartCoroutine(ShakeEffect());                                        //啟動協同程序(協同方法());
+            }
+        }
+    } 
 
     private void AddGo()
     {
