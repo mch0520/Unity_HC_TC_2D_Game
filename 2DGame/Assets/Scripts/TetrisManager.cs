@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System.Collections; //引用 系統.集合 API -偕同程序
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;   //引用介面 API
+using System.Linq;      //查詢語言
 
 
 public class TetrisManager : MonoBehaviour
@@ -24,7 +26,7 @@ public class TetrisManager : MonoBehaviour
     [Header("下一個俄羅斯方塊區域")]
     public Transform nextGoArea;
     [Header("生成俄羅斯方塊的父物件")]
-    public Transform traTetrisParer;
+    public Transform traTetrisParent;
 
     /// <summary>
     /// 下一個方塊的編號
@@ -92,7 +94,7 @@ public class TetrisManager : MonoBehaviour
             //如果x 座標小於280才能往右移動
             //if (currentTetris.anchoredPosition.x<400)
             //如果目前俄羅斯方塊 沒有 碰到右邊牆壁
-            if (!tetris.wallRight)
+            if (!tetris.wallRight && !tetris.smallRight)
             {
                 //KeyCode 列舉(下拉式選單)
                 //或者        ||
@@ -104,7 +106,7 @@ public class TetrisManager : MonoBehaviour
             }
 
             //如果x 座標小於280才能往左移動
-            if (currentTetris.anchoredPosition.x > -290)
+            if (!tetris.wallLeft && !tetris.smallLeft)
             {
                 //按下A 或 左方向鍵 往左50
                 if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
@@ -120,6 +122,7 @@ public class TetrisManager : MonoBehaviour
                 currentTetris.eulerAngles += new Vector3(0, 0, 90);
             }
 
+            
             if (!fastDown)              //如果 沒有在快速落下 才 加速
             {
                 //按住S或下方向鍵 加快掉落速度
@@ -139,6 +142,7 @@ public class TetrisManager : MonoBehaviour
             if (tetris.wallDown || tetris.smallBottom)
             {
                 SetGround();                    //設定為地板
+                CheckTetris();                  //檢查並開始消除判定
                 StartGame();                    //生成下一顆
                 StartCoroutine(ShakeEffect());  //晃動效果
             }
@@ -159,6 +163,13 @@ public class TetrisManager : MonoBehaviour
             currentTetris.GetChild(i).name = "方塊";            //名稱改為方塊
             currentTetris.GetChild(i).gameObject.layer = 10;     //圖層改為方塊
         }
+
+        for (int i = 0; i < count; i++)
+        {
+            currentTetris.GetChild(0).SetParent(traScoreArea);
+        }
+        Destroy(currentTetris.gameObject);
+
     }
 
     private void RandomTetris()
@@ -168,6 +179,7 @@ public class TetrisManager : MonoBehaviour
         //下一個俄羅斯方塊範圍，取得子物件(子物件編號)，轉為遊戲物件，啟動設定(顯示)
         nextGoArea.GetChild(nextIndex).gameObject.SetActive(true);
     }
+   
     /// <summary>
     /// 開始遊戲
     /// 1.生成俄羅斯方塊放在正確位置
@@ -232,14 +244,56 @@ public class TetrisManager : MonoBehaviour
     {
         if (currentTetris && !fastDown)                                                            //如果 有 目前方塊 並且 還沒快速落下
         {
-            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))   //如果 按下 空白鍵
+            if (Input.GetKeyDown(KeyCode.Space) )                                     //如果 按下 空白鍵
             {
                 fastDown = true;                                                      //正在快速落下
                 timeFall = 0.018f;                                                    //掉落時間
                 StartCoroutine(ShakeEffect());                                        //啟動協同程序(協同方法());
             }
         }
-    } 
+    }
+
+    [Header("分數判定區域")]
+    public Transform traScoreArea;
+
+    public RectTransform[] rectSmall;
+
+    /// <summary>
+    /// 檢查方塊是否連線
+    /// </summary>
+    private void CheckTetris()
+    {
+        rectSmall = new RectTransform[traScoreArea.childCount];             
+
+        for (int i = 0; i < traScoreArea.childCount; i++)
+        {
+            rectSmall[i] = traScoreArea.GetChild(i).GetComponent<RectTransform>();
+        }
+
+        //檢查有幾棵位置在-300
+        var small= rectSmall.Where(x=>x.anchoredPosition.y==-300);
+        print(small.ToArray().Length);
+
+        //一行消除有幾棵
+        if (small.ToArray().Length==16)
+        {
+
+        }
+    }
+
+    private IEnumerable Shine(RectTransform[] smalls)
+    {
+        float interval = 0.005f;
+        for (int i = 0; i < 16; i++) smalls[i].GetComponent<Image>().enabled=false;
+        yield return new WaitForSeconds(interval);
+        for (int i = 0; i < 16; i++) smalls[i].GetComponent<Image>().enabled = true;
+        yield return new WaitForSeconds(interval);
+        for (int i = 0; i < 16; i++) smalls[i].GetComponent<Image>().enabled=false;
+        yield return new WaitForSeconds(interval);
+        for (int i = 0; i < 16; i++) smalls[i].GetComponent<Image>().enabled = true;
+
+
+    }
 
     private void AddGo()
     {
@@ -273,5 +327,6 @@ public class TetrisManager : MonoBehaviour
     {
 
     }
+
 
 }

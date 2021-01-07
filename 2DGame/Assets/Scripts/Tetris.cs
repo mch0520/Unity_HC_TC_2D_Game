@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;          //引用系統.查詢系統 API-偵測陣列、清單內的資料
 
 public class Tetris : MonoBehaviour
 {
@@ -13,15 +14,44 @@ public class Tetris : MonoBehaviour
     public int offsetX;
     [Header("旋轉位移上下")]
     public int offsetY;
-    [Header("每一顆小方塊的射線長度"), Range(0f, 2f)]
-    public float smallLength=0.5f;
+
+    [Header("偵測是否能旋轉")]
+    public float lengthRotate0;
+    public float lengthDownRotate0;
+    public float lengthRotate90r;
+    public float lengthRotate90l;
 
     /// <summary>
     /// 紀錄目前的角度
     /// </summary>
     public float length;
     public float lengthDown;
+    public float lengthRotateR;
+    public float lengthRotateL;
+
+    /// <summary>
+    /// 是否碰撞到右邊牆壁
+    /// </summary>
+    public bool wallRight;
+    /// <summary>
+    /// 是否碰撞到左邊牆壁
+    /// </summary>
+    public bool wallLeft;
+    /// <summary>
+    /// 是否碰撞到下方地板
+    /// </summary>
+    public bool wallDown;
+    /// <summary>
+    /// 是否能旋轉
+    /// </summary>
+    public bool canRotate = true;
+
+    private RectTransform rect;
+
     #endregion
+
+    [Header("每一顆小方塊的射線長度"), Range(0f, 2f)]
+    public float smallLength = 0.5f;
 
     #region 事件
     /// <summary>
@@ -85,6 +115,12 @@ public class Tetris : MonoBehaviour
     {
         //紀錄遊戲開始的角度
         length = length0;
+        rect = GetComponent<RectTransform>();
+
+        //偵測有自己的子物件 就新增幾個陣列
+        smallRightAll = new bool[transform.childCount];
+        smallLeftAll = new bool[transform.childCount];
+
     }
 
     private void Update()
@@ -95,9 +131,56 @@ public class Tetris : MonoBehaviour
 
 
     /// <summary>
-    /// 小方塊底部圖層
+    /// 小方塊底部碰撞
     /// </summary>
     public bool smallBottom;
+    /// <summary>
+    /// 右邊是否有方塊
+    /// </summary>
+    public bool smallRight;
+    /// <summary>
+    /// 所有方塊右邊是否有其他方塊
+    /// </summary>
+    public bool[] smallRightAll;
+
+    /// <summary>
+    /// 左邊是否有方塊
+    /// </summary>
+    public bool smallLeft;
+    /// <summary>
+    /// 所有方塊左邊是否有其他方塊
+    /// </summary>
+    public bool[] smallLeftAll;
+
+    /// <summary>
+    /// 檢查左邊與右邊是否有其他方塊
+    /// </summary>
+    private void CheckLeftAndRight()
+    {
+        //迴圈執行每一顆小方塊
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            //每一顆小方塊 射線(每一顆小方塊的中心點，向下，長度，圖層)
+            RaycastHit2D hitR = Physics2D.Raycast(transform.GetChild(i).position, Vector3.right, smallLength, 1 << 10);
+            //如果 右邊有方塊 就 將陣列對應的格子勾選
+            if (hitR && hitR.collider.name == "方塊") smallRightAll[i] = true;
+            else smallRightAll[i] = false;
+
+            RaycastHit2D hitL = Physics2D.Raycast(transform.GetChild(i).position, Vector3.left, smallLength, 1 << 10);
+
+            if (hitL && hitL.collider.name == "方塊") smallLeftAll[i] = true;
+            else smallLeftAll[i] = false;
+        }
+
+        //檢查陣列內 等於 true 的資料
+        //陣列.哪裡(代名詞=>條件)
+        //var 無類型
+        var allRight = smallRightAll.Where(x => x == true);
+        smallRight = allRight.ToArray().Length > 0;
+
+        var allLeft = smallLeftAll.Where(x => x == true);
+        smallLeft = allLeft.ToArray().Length > 0;
+    }
 
     /// <summary>
     /// 檢查底部是否有其他方塊
@@ -115,15 +198,7 @@ public class Tetris : MonoBehaviour
     }
 
     #region 方法
-    /// <summary>
-    /// 是否碰撞到右邊牆壁
-    /// </summary>
-    public bool wallRight;
-
-    /// <summary>
-    /// 是否碰撞到左邊牆壁
-    /// </summary>
-    public bool wallLeft;
+    
 
     /// <summary>
     /// 檢查射線是否碰撞到牆壁
