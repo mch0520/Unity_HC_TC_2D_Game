@@ -15123,6 +15123,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1326406189}
+  - {fileID: 2125714112}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -17584,7 +17585,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1326406189}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -18219,7 +18220,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 879411978}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1802572869}
+        m_MethodName: Again
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &879411978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18454,6 +18466,11 @@ PrefabInstance:
     - target: {fileID: 4157839084393702299, guid: 70f4c4a5738b34e4ba5de09917ab2321,
         type: 3}
       propertyPath: length
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7665198939058878175, guid: 70f4c4a5738b34e4ba5de09917ab2321,
+        type: 3}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8931973411836123480, guid: 70f4c4a5738b34e4ba5de09917ab2321,
@@ -21576,7 +21593,7 @@ RectTransform:
   - {fileID: 175755370}
   - {fileID: 674770856}
   m_Father: {fileID: 1326406189}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -27809,7 +27826,6 @@ RectTransform:
   - {fileID: 2036986614}
   - {fileID: 171564726}
   - {fileID: 1498575135}
-  - {fileID: 2125714112}
   - {fileID: 864309462}
   - {fileID: 1045518422}
   - {fileID: 1460871471}
@@ -29171,7 +29187,7 @@ RectTransform:
   m_Children:
   - {fileID: 30051998}
   m_Father: {fileID: 1326406189}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -30843,7 +30859,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1326406189}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -36449,7 +36465,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1326406189}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -36782,21 +36798,20 @@ MonoBehaviour:
   score: 0
   Hscore: 0
   level: 1
-  endimage: {fileID: 0}
-  down: {fileID: 0}
-  move: {fileID: 0}
-  clear: {fileID: 0}
-  end: {fileID: 0}
+  endimage: {fileID: 2125714111}
+  down: {fileID: 8300000, guid: 6afe995ae30b1a340827b783ce964f7a, type: 3}
+  move: {fileID: 8300000, guid: f57253cd738dd2e4c9e371ab2b7e6be6, type: 3}
+  clear: {fileID: 8300000, guid: 171e4fb6de23079448a2c67091f00ae9, type: 3}
+  rotate: {fileID: 8300000, guid: ba7284fb2de04e747a25288df2a62e5e, type: 3}
+  end: {fileID: 8300000, guid: 65c3c0d6f8b44dc49956e16ff89e9e93, type: 3}
   nextGoArea: {fileID: 1045518422}
+  traTetrisParent: {fileID: 0}
   traCanvas: {fileID: 775975415}
   currentTetris: {fileID: 0}
-  posSpawn:
-  - {x: 70, y: 360}
-  - {x: 70, y: 405}
-  - {x: 70, y: 345}
-  - {x: 70, y: 375}
-  - {x: 55, y: 360}
-  - {x: 70, y: 375}
+  traScoreArea: {fileID: 1790078574}
+  rectSmall: []
+  textCurrent: {fileID: 1065366606}
+  textHeight: {fileID: 1529788101}
 --- !u!4 &1802572870
 Transform:
   m_ObjectHideFlags: 0
@@ -39937,7 +39952,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1326406189}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -42373,7 +42388,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1326406189}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -43768,7 +43783,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2069416800}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1802572869}
+        m_MethodName: Exit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2069416800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44933,8 +44959,8 @@ RectTransform:
   - {fileID: 1904352467}
   - {fileID: 879411976}
   - {fileID: 2069416798}
-  m_Father: {fileID: 1326406189}
-  m_RootOrder: 6
+  m_Father: {fileID: 775975415}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -45348,8 +45374,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   length0: 0
   length90: 0
+  offsetX: 0
+  offsetY: 0
+  lengthRotate0: 0
+  lengthDownRotate0: 0
+  lengthRotate90r: 0
+  lengthRotate90l: 0
   length: 0
+  lengthDown: 0
+  lengthRotateR: 0
+  lengthRotateL: 0
   wallRight: 0
+  wallLeft: 0
+  wallDown: 0
+  canRotate: 1
+  smallLength: 0.5
+  smallBottom: 0
+  smallRight: 0
+  smallRightAll: 
+  smallLeft: 0
+  smallLeftAll: 
 --- !u!224 &3584193422387205991
 RectTransform:
   m_ObjectHideFlags: 0
@@ -46028,6 +46072,6 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 100, y: 100}
-  m_Spacing: {x: 0, y: 0}
+  m_Spacing: {x: 0, y: 0.1}
   m_Constraint: 0
   m_ConstraintCount: 2
